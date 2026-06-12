@@ -1488,7 +1488,7 @@
       </svg>
     </button>
   </aside>
-  <audio id="musicAudio" src="las-mananitas.mp4" preload="auto" loop playsinline></audio>
+  <audio id="musicAudio" src="las-mananitas.mp4" preload="auto" autoplay loop playsinline></audio>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
@@ -1563,7 +1563,7 @@
     const stopIcon = document.getElementById('stopIcon');
     let musicPlaying = false;
 
-    async function playMusic() {
+    async function playMusic(showBlockedMessage = true) {
       if (musicPlaying) {
         return;
       }
@@ -1577,7 +1577,9 @@
         stopIcon.style.display = '';
         musicPlaying = true;
       } catch (error) {
-        musicStatus.textContent = 'Tap again to play';
+        if (showBlockedMessage) {
+          musicStatus.textContent = 'Tap again to play';
+        }
         musicDock.classList.add('needs-tap');
       }
     }
@@ -1602,6 +1604,9 @@
 
     document.addEventListener('pointerdown', startMusicFromGesture, { once: true });
     document.addEventListener('keydown', startMusicFromGesture, { once: true });
+    window.addEventListener('load', () => {
+      playMusic(false);
+    });
 
     musicButton.addEventListener('click', () => {
       if (musicPlaying) {
