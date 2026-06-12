@@ -1464,7 +1464,7 @@
 
   <aside class="music-dock needs-tap" id="musicDock" aria-label="Background music">
     <div class="music-title">
-      <strong>Fiesta Music</strong>
+      <strong>Las Mañanitas</strong>
       <span id="musicStatus">Tap to play</span>
     </div>
     <button class="music-button" type="button" id="musicButton" aria-label="Play Las Mañanitas">
@@ -1476,7 +1476,7 @@
       </svg>
     </button>
   </aside>
-  <div id="musicFrame" class="music-frame" aria-hidden="true"></div>
+  <audio id="musicAudio" src="las-mananitas.mp4" preload="auto" loop playsinline></audio>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
@@ -1545,88 +1545,35 @@
 
     const musicButton = document.getElementById('musicButton');
     const musicDock = document.getElementById('musicDock');
-    const musicFrame = document.getElementById('musicFrame');
+    const musicAudio = document.getElementById('musicAudio');
     const musicStatus = document.getElementById('musicStatus');
     const playIcon = document.getElementById('playIcon');
     const stopIcon = document.getElementById('stopIcon');
     let musicPlaying = false;
-    let audioContext;
-    let musicTimer;
-    let beatIndex = 0;
-
-    const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 659.25, 523.25, 392.00, 493.88, 587.33, 659.25];
-
-    function playTone(frequency, duration, type, gainValue, delay = 0) {
-      const now = audioContext.currentTime + delay;
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
-
-      oscillator.type = type;
-      oscillator.frequency.setValueAtTime(frequency, now);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(gainValue, now + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-      oscillator.connect(gain);
-      gain.connect(audioContext.destination);
-      oscillator.start(now);
-      oscillator.stop(now + duration + 0.03);
-    }
-
-    function playClick(delay = 0) {
-      const now = audioContext.currentTime + delay;
-      const bufferSize = audioContext.sampleRate * 0.05;
-      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i += 1) {
-        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
-      }
-
-      const noise = audioContext.createBufferSource();
-      const gain = audioContext.createGain();
-      gain.gain.setValueAtTime(0.05, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
-      noise.buffer = buffer;
-      noise.connect(gain);
-      gain.connect(audioContext.destination);
-      noise.start(now);
-      noise.stop(now + 0.055);
-    }
-
-    function playBeat() {
-      const note = melody[beatIndex % melody.length];
-      const bass = note / 2;
-      playTone(note, 0.22, 'triangle', 0.055);
-      playTone(note * 1.5, 0.11, 'sine', 0.018, 0.04);
-      if (beatIndex % 2 === 0) {
-        playTone(bass, 0.2, 'sawtooth', 0.028);
-      }
-      playClick(0.01);
-      beatIndex += 1;
-    }
 
     async function playMusic() {
       if (musicPlaying) {
         return;
       }
 
-      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
-      await audioContext.resume();
-      playBeat();
-      musicTimer = window.setInterval(playBeat, 330);
-      musicStatus.textContent = 'Now playing';
-      musicButton.setAttribute('aria-label', 'Stop fiesta music');
-      musicDock.classList.remove('needs-tap');
-      playIcon.style.display = 'none';
-      stopIcon.style.display = '';
-      musicPlaying = true;
+      try {
+        await musicAudio.play();
+        musicStatus.textContent = 'Now playing';
+        musicButton.setAttribute('aria-label', 'Stop Las Mañanitas');
+        musicDock.classList.remove('needs-tap');
+        playIcon.style.display = 'none';
+        stopIcon.style.display = '';
+        musicPlaying = true;
+      } catch (error) {
+        musicStatus.textContent = 'Tap again to play';
+        musicDock.classList.add('needs-tap');
+      }
     }
 
     function stopMusic() {
-      window.clearInterval(musicTimer);
-      musicTimer = null;
+      musicAudio.pause();
       musicStatus.textContent = 'Tap to play';
-      musicButton.setAttribute('aria-label', 'Play fiesta music');
+      musicButton.setAttribute('aria-label', 'Play Las Mañanitas');
       musicDock.classList.add('needs-tap');
       playIcon.style.display = '';
       stopIcon.style.display = 'none';
