@@ -986,6 +986,11 @@
       backdrop-filter: blur(14px);
     }
 
+    .music-dock.needs-tap {
+      border-color: rgba(255, 209, 57, .55);
+      animation: music-dock-glow 2s ease-in-out infinite;
+    }
+
     .music-title {
       min-width: 0;
     }
@@ -1020,6 +1025,10 @@
       place-items: center;
       cursor: pointer;
       box-shadow: inset 0 -4px 0 rgba(244, 93, 66, .3);
+    }
+
+    .music-dock.needs-tap .music-button {
+      animation: music-button-pulse 1.35s ease-in-out infinite;
     }
 
     .music-button svg {
@@ -1127,6 +1136,16 @@
       0% { opacity: 0; transform: translate(-50%, -50%) scale(.35) rotate(0deg); }
       18% { opacity: 1; }
       100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(1) rotate(var(--spark-rot)); }
+    }
+
+    @keyframes music-dock-glow {
+      0%, 100% { box-shadow: 0 18px 42px rgba(0, 0, 0, .38), 0 0 0 0 rgba(255, 209, 57, .18); }
+      50% { box-shadow: 0 18px 42px rgba(0, 0, 0, .38), 0 0 0 8px rgba(255, 209, 57, .08); }
+    }
+
+    @keyframes music-button-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     @keyframes taco-shell-open {
@@ -1441,10 +1460,10 @@
     </section>
   </main>
 
-  <aside class="music-dock" aria-label="Background music">
+  <aside class="music-dock needs-tap" id="musicDock" aria-label="Background music">
     <div class="music-title">
       <strong>Las Mañanitas</strong>
-      <span id="musicStatus">Birthday music</span>
+      <span id="musicStatus">Tap for music</span>
     </div>
     <button class="music-button" type="button" id="musicButton" aria-label="Play Las Mañanitas">
       <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true">
@@ -1511,6 +1530,7 @@
     });
 
     const musicButton = document.getElementById('musicButton');
+    const musicDock = document.getElementById('musicDock');
     const musicFrame = document.getElementById('musicFrame');
     const musicStatus = document.getElementById('musicStatus');
     const playIcon = document.getElementById('playIcon');
@@ -1518,9 +1538,13 @@
     let musicPlaying = false;
 
     function playMusic() {
+      if (musicPlaying) {
+        return;
+      }
       musicFrame.innerHTML = '<iframe title="Las Mananitas" width="1" height="1" src="https://www.youtube.com/embed/cDT12zAWDuM?autoplay=1&loop=1&playlist=cDT12zAWDuM&controls=0&playsinline=1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
       musicStatus.textContent = 'Now playing';
       musicButton.setAttribute('aria-label', 'Stop Las Mañanitas');
+      musicDock.classList.remove('needs-tap');
       playIcon.style.display = 'none';
       stopIcon.style.display = '';
       musicPlaying = true;
@@ -1528,14 +1552,24 @@
 
     function stopMusic() {
       musicFrame.innerHTML = '';
-      musicStatus.textContent = 'Birthday music';
+      musicStatus.textContent = 'Tap for music';
       musicButton.setAttribute('aria-label', 'Play Las Mañanitas');
+      musicDock.classList.add('needs-tap');
       playIcon.style.display = '';
       stopIcon.style.display = 'none';
       musicPlaying = false;
     }
 
-    window.addEventListener('load', playMusic);
+    function startMusicFromGesture(event) {
+      if (event.target.closest('#musicButton')) {
+        return;
+      }
+
+      playMusic();
+    }
+
+    document.addEventListener('pointerdown', startMusicFromGesture, { once: true });
+    document.addEventListener('keydown', startMusicFromGesture, { once: true });
 
     musicButton.addEventListener('click', () => {
       if (musicPlaying) {
