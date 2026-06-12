@@ -128,6 +128,7 @@
       filter: drop-shadow(0 12px 12px rgba(0, 0, 0, .18));
       transform: translate3d(var(--float-x, 0px), var(--float-y, 0px), 0) rotate(var(--float-spin, 0deg));
       transition: opacity .3s ease;
+      will-change: transform;
     }
 
     .trail-item::before,
@@ -273,6 +274,7 @@
       margin: 4px auto 18px;
       filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .2));
       animation: entrance-pop 1s cubic-bezier(.2, .85, .2, 1.15) both;
+      will-change: transform;
     }
 
     .bottle {
@@ -1325,7 +1327,7 @@
     <section class="hero" aria-labelledby="invite-title">
       <div class="sunburst" aria-hidden="true"></div>
       <div class="section-inner hero-inner">
-        <svg class="party-art reveal visible" viewBox="0 0 456 255" role="img" aria-label="Tequila bottle, taco, and colorful confetti">
+        <svg class="party-art" viewBox="0 0 456 255" role="img" aria-label="Tequila bottle, taco, and colorful confetti">
           <g class="bottle">
             <rect x="158" y="24" width="37" height="100" rx="7" fill="#f8aa35"/>
             <rect x="147" y="39" width="59" height="15" fill="#ffd139"/>
@@ -1360,12 +1362,12 @@
           </g>
         </svg>
 
-        <p class="eyebrow reveal visible">Join us for tacos & tequila in honor of</p>
-        <h1 id="invite-title" class="reveal visible">
+        <p class="eyebrow">Join us for tacos & tequila in honor of</p>
+        <h1 id="invite-title">
           <span>Pato & Trini's</span>
           <span>Birthday</span>
         </h1>
-        <p class="hero-detail reveal visible">June 20, 2026 Saturday at 7PM<br>8618 W Columbus Ave<br>Phoenix, AZ 85037</p>
+        <p class="hero-detail">June 20, 2026 Saturday at 7PM<br>8618 W Columbus Ave<br>Phoenix, AZ 85037</p>
         <div class="scroll-mark" aria-hidden="true"></div>
         <p class="scroll-label">Scroll</p>
       </div>
@@ -1462,8 +1464,8 @@
 
   <aside class="music-dock needs-tap" id="musicDock" aria-label="Background music">
     <div class="music-title">
-      <strong>Las Mañanitas</strong>
-      <span id="musicStatus">Tap for music</span>
+      <strong>Fiesta Music</strong>
+      <span id="musicStatus">Tap to play</span>
     </div>
     <button class="music-button" type="button" id="musicButton" aria-label="Play Las Mañanitas">
       <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true">
@@ -1478,7 +1480,15 @@
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
-    const trailItems = document.querySelectorAll('.trail-item');
+    const trailItems = Array.from(document.querySelectorAll('.trail-item')).map((item) => {
+      const styles = getComputedStyle(item);
+      return {
+        item,
+        driftX: parseFloat(styles.getPropertyValue('--drift-x')) || 0,
+        driftY: parseFloat(styles.getPropertyValue('--drift-y')) || -1,
+        spin: parseFloat(styles.getPropertyValue('--spin')) || 0,
+      };
+    });
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -1491,20 +1501,24 @@
 
     reveals.forEach((item) => observer.observe(item));
 
+    let trailFrame = 0;
+
     function updateScrollTrail() {
-      trailItems.forEach((item) => {
-        const styles = getComputedStyle(item);
-        const driftX = parseFloat(styles.getPropertyValue('--drift-x')) || 0;
-        const driftY = parseFloat(styles.getPropertyValue('--drift-y')) || -1;
-        const spin = parseFloat(styles.getPropertyValue('--spin')) || 0;
-        item.style.setProperty('--float-x', `${window.scrollY * driftX}px`);
-        item.style.setProperty('--float-y', `${window.scrollY * driftY}px`);
-        item.style.setProperty('--float-spin', `${window.scrollY * spin}deg`);
+      trailFrame = 0;
+      const scrollY = window.scrollY;
+      trailItems.forEach(({ item, driftX, driftY, spin }) => {
+        item.style.setProperty('--float-x', `${scrollY * driftX}px`);
+        item.style.setProperty('--float-y', `${scrollY * driftY}px`);
+        item.style.setProperty('--float-spin', `${scrollY * spin}deg`);
       });
     }
 
     updateScrollTrail();
-    window.addEventListener('scroll', updateScrollTrail, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (!trailFrame) {
+        trailFrame = requestAnimationFrame(updateScrollTrail);
+      }
+    }, { passive: true });
 
     const toastTrigger = document.getElementById('toastTrigger');
     const toastBurst = document.getElementById('toastBurst');
@@ -1536,14 +1550,72 @@
     const playIcon = document.getElementById('playIcon');
     const stopIcon = document.getElementById('stopIcon');
     let musicPlaying = false;
+    let audioContext;
+    let musicTimer;
+    let beatIndex = 0;
 
-    function playMusic() {
+    const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 659.25, 523.25, 392.00, 493.88, 587.33, 659.25];
+
+    function playTone(frequency, duration, type, gainValue, delay = 0) {
+      const now = audioContext.currentTime + delay;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(frequency, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(gainValue, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + duration + 0.03);
+    }
+
+    function playClick(delay = 0) {
+      const now = audioContext.currentTime + delay;
+      const bufferSize = audioContext.sampleRate * 0.05;
+      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i += 1) {
+        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+      }
+
+      const noise = audioContext.createBufferSource();
+      const gain = audioContext.createGain();
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+      noise.buffer = buffer;
+      noise.connect(gain);
+      gain.connect(audioContext.destination);
+      noise.start(now);
+      noise.stop(now + 0.055);
+    }
+
+    function playBeat() {
+      const note = melody[beatIndex % melody.length];
+      const bass = note / 2;
+      playTone(note, 0.22, 'triangle', 0.055);
+      playTone(note * 1.5, 0.11, 'sine', 0.018, 0.04);
+      if (beatIndex % 2 === 0) {
+        playTone(bass, 0.2, 'sawtooth', 0.028);
+      }
+      playClick(0.01);
+      beatIndex += 1;
+    }
+
+    async function playMusic() {
       if (musicPlaying) {
         return;
       }
-      musicFrame.innerHTML = '<iframe title="Las Mananitas" width="1" height="1" src="https://www.youtube.com/embed/cDT12zAWDuM?autoplay=1&loop=1&playlist=cDT12zAWDuM&controls=0&playsinline=1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+
+      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+      await audioContext.resume();
+      playBeat();
+      musicTimer = window.setInterval(playBeat, 330);
       musicStatus.textContent = 'Now playing';
-      musicButton.setAttribute('aria-label', 'Stop Las Mañanitas');
+      musicButton.setAttribute('aria-label', 'Stop fiesta music');
       musicDock.classList.remove('needs-tap');
       playIcon.style.display = 'none';
       stopIcon.style.display = '';
@@ -1551,9 +1623,10 @@
     }
 
     function stopMusic() {
-      musicFrame.innerHTML = '';
-      musicStatus.textContent = 'Tap for music';
-      musicButton.setAttribute('aria-label', 'Play Las Mañanitas');
+      window.clearInterval(musicTimer);
+      musicTimer = null;
+      musicStatus.textContent = 'Tap to play';
+      musicButton.setAttribute('aria-label', 'Play fiesta music');
       musicDock.classList.add('needs-tap');
       playIcon.style.display = '';
       stopIcon.style.display = 'none';
