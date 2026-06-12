@@ -1,0 +1,1550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pato & Trini's Tacos & Tequila Birthday</title>
+  <meta name="description" content="Join us for tacos, tequila, music, and birthday memories as we celebrate Pato & Trini.">
+  <meta property="og:title" content="Pato & Trini's Tacos & Tequila Birthday">
+  <meta property="og:description" content="Join us for tacos, tequila, music, and birthday memories as we celebrate Pato & Trini.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xxaznkidxxx.github.io/tacos-and-tequila-birthday/">
+  <meta property="og:image" content="https://xxaznkidxxx.github.io/tacos-and-tequila-birthday/og-tacos-tequila.png">
+  <meta property="og:image:width" content="680">
+  <meta property="og:image:height" content="680">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pato & Trini's Tacos & Tequila Birthday">
+  <meta name="twitter:description" content="Join us for tacos, tequila, music, and birthday memories as we celebrate Pato & Trini.">
+  <meta name="twitter:image" content="https://xxaznkidxxx.github.io/tacos-and-tequila-birthday/og-tacos-tequila.png">
+  <style>
+    :root {
+      --navy: #062955;
+      --navy-deep: #031d3f;
+      --aqua: #55dfc5;
+      --aqua-soft: #9af6df;
+      --yellow: #ffd139;
+      --gold: #f8aa35;
+      --coral: #f45d42;
+      --cream: #fff7dc;
+      --white: #ffffff;
+      --shadow: 0 22px 60px rgba(1, 14, 34, .38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--navy-deep);
+    }
+
+    body {
+      margin: 0;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 50% 4%, rgba(85, 223, 197, .28), transparent 21rem),
+        radial-gradient(circle at 15% 33%, rgba(244, 93, 66, .18), transparent 17rem),
+        radial-gradient(circle at 88% 62%, rgba(255, 209, 57, .18), transparent 18rem),
+        linear-gradient(180deg, var(--navy) 0%, #062851 34%, #05224a 66%, #031831 100%);
+      font-family: Avenir Next, Montserrat, Trebuchet MS, Arial, sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .65), transparent 80%);
+      z-index: 1;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      width: min(118vw, 720px);
+      height: min(118vw, 720px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .24;
+      filter: blur(18px);
+      transform: translate(-50%, 0);
+      background:
+        radial-gradient(circle at 45% 48%, rgba(85, 223, 197, .24), transparent 44%),
+        radial-gradient(circle at 60% 62%, rgba(255, 209, 57, .13), transparent 48%);
+      animation: flow-glow-drift 16s ease-in-out infinite;
+    }
+
+    .page::before {
+      left: 16%;
+      top: 82vh;
+    }
+
+    .page::after {
+      left: 86%;
+      top: 205vh;
+      opacity: .2;
+      animation-delay: -7s;
+    }
+
+    .confetti-field {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .party-trail {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .trail-item {
+      position: absolute;
+      width: var(--trail-size, 42px);
+      height: var(--trail-size, 42px);
+      left: var(--x);
+      top: var(--y);
+      opacity: .28;
+      filter: drop-shadow(0 12px 12px rgba(0, 0, 0, .18));
+      transform: translate3d(var(--float-x, 0px), var(--float-y, 0px), 0) rotate(var(--float-spin, 0deg));
+      transition: opacity .3s ease;
+    }
+
+    .trail-item::before,
+    .trail-item::after {
+      content: "";
+      position: absolute;
+      display: block;
+    }
+
+    .trail-taco::before {
+      left: 4px;
+      bottom: 7px;
+      width: 36px;
+      height: 25px;
+      border-radius: 40px 40px 8px 8px;
+      background: var(--yellow);
+      border: 4px solid var(--gold);
+    }
+
+    .trail-taco::after {
+      left: 12px;
+      bottom: 26px;
+      width: 23px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--aqua);
+      box-shadow: 15px 5px 0 -2px var(--coral), -5px 8px 0 -2px var(--cream);
+    }
+
+    .trail-lime::before {
+      inset: 7px;
+      border-radius: 50% 50% 50% 6px;
+      background: var(--aqua);
+      transform: rotate(-24deg);
+      box-shadow: inset 0 0 0 5px rgba(255, 247, 220, .72);
+    }
+
+    .trail-shot::before {
+      left: 12px;
+      top: 6px;
+      width: 20px;
+      height: 30px;
+      border: 4px solid var(--cream);
+      border-radius: 4px 4px 8px 8px;
+      background: linear-gradient(to top, var(--yellow) 54%, transparent 54%);
+    }
+
+    .trail-bottle::before {
+      left: 14px;
+      top: 13px;
+      width: 18px;
+      height: 38px;
+      border-radius: 5px 5px 10px 10px;
+      background: var(--gold);
+    }
+
+    .trail-bottle::after {
+      left: 18px;
+      top: 2px;
+      width: 10px;
+      height: 18px;
+      border-radius: 4px 4px 0 0;
+      background: var(--gold);
+      box-shadow: 0 13px 0 var(--aqua);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: .96;
+      animation: floaty var(--speed, 8s) ease-in-out infinite;
+      transform: translate3d(0, 0, 0) rotate(var(--tilt, 0deg));
+    }
+
+    .confetti::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: var(--size, 11px) solid transparent;
+      border-right: var(--size, 11px) solid transparent;
+      border-bottom: calc(var(--size, 11px) * 1.55) solid var(--color, var(--yellow));
+      filter: drop-shadow(0 5px 4px rgba(0, 0, 0, .14));
+    }
+
+    .c1 { --color: var(--aqua); --size: 12px; --speed: 7s; left: 6%; top: 11%; }
+    .c2 { --color: var(--yellow); --size: 10px; --speed: 9s; left: 15%; top: 18%; --tilt: 42deg; animation-delay: -2s; }
+    .c3 { --color: var(--coral); --size: 11px; --speed: 8.4s; left: 88%; top: 17%; --tilt: -34deg; animation-delay: -3s; }
+    .c4 { --color: var(--aqua); --size: 10px; --speed: 9.2s; left: 78%; top: 24%; --tilt: 74deg; animation-delay: -4s; }
+    .c5 { --color: var(--yellow); --size: 12px; --speed: 7.8s; left: 92%; top: 53%; --tilt: 18deg; animation-delay: -1s; }
+    .c6 { --color: var(--coral); --size: 10px; --speed: 10s; left: 13%; top: 55%; --tilt: -85deg; animation-delay: -6s; }
+    .c7 { --color: var(--aqua); --size: 13px; --speed: 8.8s; left: 73%; top: 63%; --tilt: 27deg; animation-delay: -5s; }
+    .c8 { --color: var(--yellow); --size: 10px; --speed: 9.6s; left: 40%; top: 76%; --tilt: -20deg; animation-delay: -3.5s; }
+
+    @keyframes floaty {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--tilt, 0deg)); }
+      50% { transform: translate3d(10px, -24px, 0) rotate(calc(var(--tilt, 0deg) + 16deg)); }
+    }
+
+    section {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 74px 18px;
+      position: relative;
+      overflow: visible;
+      background: transparent;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: -18% -26%;
+      pointer-events: none;
+      background: none;
+      opacity: 0;
+    }
+
+    .section-inner {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding-top: 18px;
+      padding-bottom: 104px;
+      margin-bottom: -72px;
+    }
+
+    .hero-inner {
+      display: grid;
+      align-content: center;
+      min-height: calc(100svh - 46px);
+      text-align: center;
+    }
+
+    .party-art {
+      width: min(86vw, 390px);
+      margin: 4px auto 18px;
+      filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .2));
+      animation: entrance-pop 1s cubic-bezier(.2, .85, .2, 1.15) both;
+    }
+
+    .bottle {
+      animation: bottle-sway 5.8s ease-in-out infinite;
+      transform-origin: 190px 224px;
+    }
+
+    .taco {
+      animation: taco-bob 4.6s ease-in-out infinite;
+      transform-origin: 286px 254px;
+    }
+
+    .sprinkle {
+      animation: sprinkle-twinkle 2.8s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .sprinkle:nth-of-type(2n) {
+      animation-delay: -1.3s;
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      font-size: clamp(14px, 3.4vw, 18px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.35;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, .1);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--aqua);
+      font-family: Georgia, Cambria, Times New Roman, serif;
+      font-size: clamp(50px, 15.8vw, 75px);
+      line-height: .99;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 0 7px 0 rgba(0, 0, 0, .09);
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .hero-detail {
+      margin: 28px auto 0;
+      max-width: 370px;
+      font-size: clamp(22px, 6.2vw, 28px);
+      line-height: 1.22;
+      font-weight: 900;
+      text-wrap: balance;
+      text-shadow: 0 4px 0 rgba(0, 0, 0, .12);
+    }
+
+    .scroll-mark {
+      width: 54px;
+      height: 76px;
+      border: 4px solid rgba(255, 255, 255, .82);
+      border-radius: 999px;
+      margin: 24px auto 0;
+      position: relative;
+      background: rgba(255, 255, 255, .08);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .22), 0 0 0 8px rgba(85, 223, 197, .12);
+      animation: scroll-pulse 1.9s ease-in-out infinite;
+    }
+
+    .scroll-mark::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      width: 9px;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--yellow);
+      transform: translateX(-50%);
+      animation: scroll-dot 1.8s ease-in-out infinite;
+    }
+
+    .scroll-mark::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      width: 18px;
+      height: 18px;
+      border-right: 5px solid var(--aqua);
+      border-bottom: 5px solid var(--aqua);
+      transform: translateX(-50%) rotate(45deg);
+      animation: arrow-drop 1.45s ease-in-out infinite;
+    }
+
+    .scroll-label {
+      margin: 16px auto 0;
+      color: var(--yellow);
+      font-size: 14px;
+      font-weight: 950;
+      text-transform: uppercase;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, .14);
+      animation: label-glow 1.9s ease-in-out infinite;
+    }
+
+    .sunburst {
+      position: absolute;
+      left: 50%;
+      top: 4%;
+      width: min(112vw, 560px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(6, 41, 85, .05) 0 17%, transparent 18%),
+        repeating-conic-gradient(from -8deg, rgba(255, 209, 57, .17) 0deg 8deg, rgba(85, 223, 197, .11) 8deg 15deg, transparent 15deg 25deg),
+        radial-gradient(circle, rgba(85, 223, 197, .13), transparent 64%);
+      filter: blur(.4px);
+      opacity: .26;
+      mask-image: radial-gradient(circle, #000 0 56%, transparent 76%);
+      transform: translateX(-50%);
+      animation: disco-spin 36s linear infinite;
+    }
+
+    .band {
+      background: transparent;
+      padding-top: 118px;
+      margin-bottom: -64px;
+    }
+
+    .details {
+      padding-top: 120px;
+      margin-bottom: -62px;
+    }
+
+    .details::before {
+      background: none;
+    }
+
+    .headline {
+      margin: 0 0 22px;
+      color: var(--aqua);
+      font-family: Georgia, Cambria, Times New Roman, serif;
+      font-size: clamp(38px, 11vw, 58px);
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .subcopy {
+      margin: 0 auto 24px;
+      max-width: 360px;
+      color: rgba(255, 255, 255, .9);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    .tile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4px;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .tile-grid::before {
+      content: "";
+      position: absolute;
+      left: 39px;
+      top: 22px;
+      bottom: 22px;
+      width: 24px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, transparent, rgba(85, 223, 197, .22), rgba(255, 209, 57, .16), rgba(244, 93, 66, .14), transparent);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .tile {
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 20px 8px 20px 12px;
+      border: 0;
+      border-radius: 0;
+      background:
+        radial-gradient(ellipse at 24% 50%, rgba(85, 223, 197, .16), transparent 54%),
+        radial-gradient(ellipse at 72% 50%, rgba(255, 209, 57, .06), transparent 58%);
+      box-shadow: none;
+      backdrop-filter: none;
+      position: relative;
+      overflow: visible;
+      transition: opacity .8s ease, transform .8s cubic-bezier(.2, .75, .2, 1), background .8s ease;
+    }
+
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 6px 4px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at 34% 50%, rgba(255, 255, 255, .06), transparent 68%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .tile.visible {
+      background:
+        radial-gradient(ellipse at 24% 50%, rgba(85, 223, 197, .2), transparent 56%),
+        radial-gradient(ellipse at 72% 50%, rgba(255, 209, 57, .08), transparent 60%);
+    }
+
+    .tile.visible svg {
+      animation: tiny-dance 4.6s ease-in-out infinite;
+    }
+
+    .tile:nth-child(2) {
+      width: calc(100% - 22px);
+      margin-left: 22px;
+    }
+
+    .tile:nth-child(3) {
+      width: calc(100% - 14px);
+      margin-right: 14px;
+    }
+
+    .tile svg {
+      width: 78px;
+      height: 78px;
+      overflow: visible;
+    }
+
+    .mini-gif {
+      width: 104px;
+      height: 104px;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, .15), transparent 36px),
+        rgba(3, 24, 49, .34);
+      box-shadow: inset 0 0 0 2px rgba(85, 223, 197, .2);
+      flex: 0 0 auto;
+    }
+
+    .mini-gif span {
+      position: absolute;
+      display: block;
+    }
+
+    .taco-gif .plate {
+      left: 15px;
+      bottom: 16px;
+      width: 76px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--aqua);
+    }
+
+    .taco-gif .shell {
+      left: 19px;
+      bottom: 23px;
+      width: 70px;
+      height: 47px;
+      border-radius: 70px 70px 8px 8px;
+      background: var(--yellow);
+      border: 4px solid var(--gold);
+      transform-origin: 50% 100%;
+      animation: taco-shell-open 3.8s ease-in-out infinite;
+    }
+
+    .taco-gif .lettuce,
+    .taco-gif .tomato,
+    .taco-gif .cheese,
+    .taco-gif .crema {
+      left: 30px;
+      top: 16px;
+      opacity: 0;
+      transform: translateY(-18px);
+      animation: taco-drop 3.8s ease-in-out infinite;
+    }
+
+    .taco-gif .lettuce {
+      width: 48px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--aqua);
+      animation-delay: .15s;
+    }
+
+    .taco-gif .tomato {
+      left: 24px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 19px 3px 0 var(--coral), 38px 0 0 var(--coral);
+      animation-delay: .55s;
+    }
+
+    .taco-gif .cheese {
+      left: 34px;
+      top: 14px;
+      width: 36px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--cream);
+      box-shadow: -12px 13px 0 var(--cream), 16px 22px 0 var(--cream);
+      animation-delay: .95s;
+    }
+
+    .taco-gif .crema {
+      left: 38px;
+      top: 12px;
+      width: 24px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--white);
+      animation-delay: 1.35s;
+    }
+
+    .taco-gif .hand {
+      right: -30px;
+      top: 18px;
+      width: 36px;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: -9px 8px 0 -3px var(--cream);
+      animation: taco-hand 3.8s ease-in-out infinite;
+    }
+
+    .tequila-gif .bottle {
+      left: 15px;
+      top: 20px;
+      width: 22px;
+      height: 66px;
+      border-radius: 7px 7px 12px 12px;
+      background: var(--gold);
+      transform-origin: 22px 50px;
+      animation: bottle-pour 4s ease-in-out infinite;
+    }
+
+    .tequila-gif .bottle::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: -17px;
+      width: 12px;
+      height: 22px;
+      border-radius: 4px 4px 0 0;
+      background: var(--gold);
+      box-shadow: 0 12px 0 var(--aqua);
+    }
+
+    .tequila-gif .cap {
+      left: 18px;
+      top: 4px;
+      width: 18px;
+      height: 7px;
+      border-radius: 3px;
+      background: var(--yellow);
+      animation: cap-pop 4s ease-in-out infinite;
+    }
+
+    .tequila-gif .pour {
+      left: 49px;
+      top: 38px;
+      width: 8px;
+      height: 0;
+      border-radius: 999px;
+      background: var(--yellow);
+      transform: rotate(28deg);
+      transform-origin: top;
+      animation: pour-stream 4s ease-in-out infinite;
+    }
+
+    .tequila-gif .shot {
+      bottom: 17px;
+      width: 20px;
+      height: 28px;
+      border: 3px solid var(--cream);
+      border-top-width: 4px;
+      border-radius: 4px 4px 8px 8px;
+      background: linear-gradient(to top, var(--yellow) 0%, transparent 0%);
+      animation: shot-fill 4s ease-in-out infinite;
+    }
+
+    .tequila-gif .s1 { left: 44px; animation-delay: .3s; }
+    .tequila-gif .s2 { left: 64px; animation-delay: .55s; }
+    .tequila-gif .s3 { left: 25px; animation-delay: .78s; }
+
+    .familia-gif .person {
+      width: 20px;
+      height: 36px;
+      border-radius: 999px 999px 8px 8px;
+      background: var(--aqua);
+      bottom: 20px;
+    }
+
+    .familia-gif .person::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: -14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cream);
+    }
+
+    .familia-gif .host {
+      left: 42px;
+      background: var(--yellow);
+      animation: host-bounce 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .hugger {
+      left: -22px;
+      background: var(--aqua);
+      animation: walk-hug 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .selfie {
+      right: -28px;
+      background: var(--coral);
+      animation: walk-selfie 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .shots {
+      left: -28px;
+      background: var(--gold);
+      animation: walk-shots 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .phone {
+      right: 12px;
+      top: 30px;
+      width: 9px;
+      height: 15px;
+      border-radius: 2px;
+      background: var(--navy);
+      box-shadow: inset 0 0 0 2px var(--cream);
+      opacity: 0;
+      animation: phone-flash 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .tray {
+      left: 10px;
+      top: 55px;
+      width: 28px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--cream);
+      opacity: 0;
+      animation: tray-toast 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .tray::before,
+    .familia-gif .tray::after {
+      content: "";
+      position: absolute;
+      bottom: 3px;
+      width: 6px;
+      height: 13px;
+      border-radius: 2px 2px 4px 4px;
+      background: var(--yellow);
+    }
+
+    .familia-gif .tray::before { left: 5px; }
+    .familia-gif .tray::after { right: 5px; }
+
+    .familia-gif .heart {
+      left: 49px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      background: var(--coral);
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: heart-pop 4.8s ease-in-out infinite;
+    }
+
+    .familia-gif .heart::before,
+    .familia-gif .heart::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .familia-gif .heart::before { left: -6px; }
+    .familia-gif .heart::after { top: -6px; }
+
+    .tile h2 {
+      margin: 0 0 5px;
+      color: var(--yellow);
+      font-size: 22px;
+      line-height: 1.04;
+      text-transform: uppercase;
+    }
+
+    .tile p {
+      margin: 0;
+      color: rgba(255, 255, 255, .88);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .detail-card {
+      margin: 18px auto 0;
+      border: 2px solid rgba(255, 209, 57, .65);
+      border-radius: 8px;
+      background: rgba(255, 247, 220, .08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .detail-row:first-child {
+      border-top: 0;
+    }
+
+    .detail-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+      box-shadow: inset 0 -5px 0 rgba(244, 93, 66, .28);
+    }
+
+    .detail-row h2 {
+      margin: 0 0 4px;
+      color: var(--aqua-soft);
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .detail-row p {
+      margin: 0;
+      font-size: clamp(20px, 5.5vw, 25px);
+      font-weight: 900;
+      line-height: 1.16;
+    }
+
+    .map-link,
+    .rsvp-link {
+      display: inline-grid;
+      grid-auto-flow: column;
+      gap: 9px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      margin-top: 18px;
+      border-radius: 8px;
+      background: var(--aqua);
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 950;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 12px 0 rgba(0, 0, 0, .16);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .map-link:active,
+    .rsvp-link:active {
+      transform: translateY(5px);
+      box-shadow: 0 7px 0 rgba(0, 0, 0, .16);
+    }
+
+    .fiesta-strip {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 28px -18px 0;
+      padding: 0 16px;
+    }
+
+    .flag {
+      width: 36px;
+      height: 44px;
+      background: var(--color);
+      clip-path: polygon(0 0, 100% 0, 100% 74%, 50% 100%, 0 74%);
+      transform-origin: top center;
+      animation: flag-wave 2.4s ease-in-out infinite;
+    }
+
+    .flag:nth-child(2n) { animation-delay: -.7s; }
+    .flag:nth-child(3n) { animation-delay: -1.2s; }
+
+    .finale {
+      min-height: 96svh;
+      padding-bottom: 108px;
+      background: transparent;
+      padding-top: 120px;
+    }
+
+    .toast {
+      width: min(76vw, 290px);
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .28));
+      cursor: pointer;
+      outline: none;
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .toast:focus-visible {
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .28)) drop-shadow(0 0 0 var(--yellow));
+    }
+
+    .toast.toast-pop {
+      animation: toast-pop .58s cubic-bezier(.2, .85, .2, 1.2);
+    }
+
+    .toast .left {
+      animation: glass-left 3.2s ease-in-out infinite;
+      transform-origin: 126px 132px;
+    }
+
+    .toast .right {
+      animation: glass-right 3.2s ease-in-out infinite;
+      transform-origin: 206px 132px;
+    }
+
+    .closing {
+      margin: 0 auto 14px;
+      color: var(--aqua);
+      font-family: Georgia, Cambria, Times New Roman, serif;
+      font-size: clamp(42px, 12vw, 62px);
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .toast-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .toast-burst {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .toast-burst span {
+      position: absolute;
+      left: 50%;
+      top: 44%;
+      width: 12px;
+      height: 12px;
+      background: var(--spark-color, var(--yellow));
+      clip-path: polygon(50% 0, 100% 100%, 0 78%);
+      transform: translate(-50%, -50%) scale(.4);
+    }
+
+    .toast-burst.active {
+      opacity: 1;
+    }
+
+    .toast-burst.active span {
+      animation: toast-spark .78s ease-out both;
+    }
+
+    .toast-burst span:nth-child(1) { --spark-x: -92px; --spark-y: -64px; --spark-rot: -28deg; --spark-color: var(--yellow); }
+    .toast-burst span:nth-child(2) { --spark-x: -58px; --spark-y: -94px; --spark-rot: 18deg; --spark-color: var(--aqua); animation-delay: .03s; }
+    .toast-burst span:nth-child(3) { --spark-x: 2px; --spark-y: -108px; --spark-rot: 42deg; --spark-color: var(--coral); animation-delay: .07s; }
+    .toast-burst span:nth-child(4) { --spark-x: 62px; --spark-y: -88px; --spark-rot: -18deg; --spark-color: var(--yellow); animation-delay: .02s; }
+    .toast-burst span:nth-child(5) { --spark-x: 92px; --spark-y: -48px; --spark-rot: 28deg; --spark-color: var(--aqua); animation-delay: .05s; }
+    .toast-burst span:nth-child(6) { --spark-x: -78px; --spark-y: 8px; --spark-rot: 70deg; --spark-color: var(--coral); animation-delay: .04s; }
+    .toast-burst span:nth-child(7) { --spark-x: 74px; --spark-y: 14px; --spark-rot: -60deg; --spark-color: var(--yellow); animation-delay: .08s; }
+    .toast-burst span:nth-child(8) { --spark-x: 8px; --spark-y: -42px; --spark-rot: 120deg; --spark-color: var(--cream); animation-delay: .01s; }
+
+    .music-dock {
+      position: fixed;
+      left: max(14px, env(safe-area-inset-left));
+      right: max(14px, env(safe-area-inset-right));
+      bottom: max(14px, env(safe-area-inset-bottom));
+      z-index: 6;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      width: min(430px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 8px;
+      background: rgba(3, 24, 49, .88);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, .38);
+      backdrop-filter: blur(14px);
+    }
+
+    .music-title {
+      min-width: 0;
+    }
+
+    .music-title strong {
+      display: block;
+      color: var(--yellow);
+      font-size: 13px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .music-title span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255, 255, 255, .76);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-button {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: inset 0 -4px 0 rgba(244, 93, 66, .3);
+    }
+
+    .music-button svg {
+      width: 23px;
+      height: 23px;
+      fill: currentColor;
+    }
+
+    .music-frame {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      left: -20px;
+      bottom: -20px;
+      opacity: .01;
+      pointer-events: none;
+    }
+
+    .reveal {
+      opacity: 0;
+      filter: blur(5px);
+      transform: translateY(54px) scale(.96);
+      transition: opacity .9s ease, filter .9s ease, transform .9s cubic-bezier(.2, .75, .2, 1);
+    }
+
+    .reveal.from-left {
+      transform: translateX(-46px) translateY(12px) scale(.96);
+    }
+
+    .reveal.from-right {
+      transform: translateX(46px) translateY(12px) scale(.96);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate(0, 0) scale(1);
+    }
+
+    @keyframes entrance-pop {
+      from { opacity: 0; transform: translateY(-28px) scale(.88); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes bottle-sway {
+      0%, 100% { transform: rotate(-1deg); }
+      50% { transform: rotate(1.8deg); }
+    }
+
+    @keyframes taco-bob {
+      0%, 100% { transform: translateY(0) rotate(.4deg); }
+      50% { transform: translateY(-9px) rotate(-.8deg); }
+    }
+
+    @keyframes sprinkle-twinkle {
+      0%, 100% { opacity: .95; transform: scale(1); }
+      50% { opacity: .48; transform: scale(.78); }
+    }
+
+    @keyframes scroll-dot {
+      0% { transform: translate(-50%, 0); opacity: 0; }
+      22% { opacity: 1; }
+      80% { transform: translate(-50%, 24px); opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { transform: translateY(0); box-shadow: 0 14px 34px rgba(0, 0, 0, .22), 0 0 0 8px rgba(85, 223, 197, .12); }
+      50% { transform: translateY(5px); box-shadow: 0 18px 36px rgba(0, 0, 0, .28), 0 0 0 13px rgba(85, 223, 197, .18); }
+    }
+
+    @keyframes arrow-drop {
+      0%, 100% { opacity: .58; transform: translate(-50%, -3px) rotate(45deg); }
+      50% { opacity: 1; transform: translate(-50%, 5px) rotate(45deg); }
+    }
+
+    @keyframes label-glow {
+      0%, 100% { opacity: .76; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes flow-glow-drift {
+      0%, 100% { transform: translate(-50%, 0) scale(1); }
+      50% { transform: translate(-50%, 34px) scale(1.08); }
+    }
+
+    @keyframes glow-breathe {
+      0%, 100% { opacity: .56; transform: translateY(0) scale(1); }
+      50% { opacity: .92; transform: translateY(-18px) scale(1.03); }
+    }
+
+    @keyframes tiny-dance {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+
+    @keyframes toast-pop {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.08) rotate(-2deg); }
+      70% { transform: scale(.98) rotate(1deg); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes toast-spark {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(.35) rotate(0deg); }
+      18% { opacity: 1; }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(1) rotate(var(--spark-rot)); }
+    }
+
+    @keyframes taco-shell-open {
+      0%, 100% { transform: scaleX(.9) scaleY(.82); }
+      18%, 82% { transform: scaleX(1) scaleY(1); }
+    }
+
+    @keyframes taco-drop {
+      0%, 12% { opacity: 0; transform: translateY(-24px) scale(.82); }
+      24%, 72% { opacity: 1; transform: translateY(34px) scale(1); }
+      84%, 100% { opacity: 0; transform: translateY(42px) scale(.96); }
+    }
+
+    @keyframes taco-hand {
+      0%, 18%, 100% { transform: translateX(0); opacity: 0; }
+      32%, 58% { transform: translateX(-26px); opacity: 1; }
+      74% { transform: translateX(-12px); opacity: 0; }
+    }
+
+    @keyframes bottle-pour {
+      0%, 24%, 86%, 100% { transform: rotate(0deg); }
+      38%, 66% { transform: rotate(-34deg); }
+    }
+
+    @keyframes cap-pop {
+      0%, 18% { transform: translate(0, 0) rotate(0); opacity: 1; }
+      32%, 76% { transform: translate(18px, -13px) rotate(145deg); opacity: 1; }
+      90%, 100% { transform: translate(30px, -18px) rotate(180deg); opacity: 0; }
+    }
+
+    @keyframes pour-stream {
+      0%, 34%, 76%, 100% { height: 0; opacity: 0; }
+      42%, 66% { height: 38px; opacity: 1; }
+    }
+
+    @keyframes shot-fill {
+      0%, 38%, 100% { background: linear-gradient(to top, var(--yellow) 0%, transparent 0%); }
+      54%, 82% { background: linear-gradient(to top, var(--yellow) 58%, transparent 58%); }
+    }
+
+    @keyframes host-bounce {
+      0%, 100% { transform: translateY(0); }
+      20%, 46%, 72% { transform: translateY(-5px); }
+      32%, 58%, 84% { transform: translateY(0); }
+    }
+
+    @keyframes walk-hug {
+      0%, 10% { transform: translateX(0); opacity: 0; }
+      22%, 42% { transform: translateX(32px); opacity: 1; }
+      55%, 100% { transform: translateX(32px); opacity: 0; }
+    }
+
+    @keyframes walk-selfie {
+      0%, 38% { transform: translateX(0); opacity: 0; }
+      50%, 68% { transform: translateX(-38px); opacity: 1; }
+      82%, 100% { transform: translateX(-38px); opacity: 0; }
+    }
+
+    @keyframes walk-shots {
+      0%, 66% { transform: translateX(0); opacity: 0; }
+      78%, 93% { transform: translateX(34px); opacity: 1; }
+      100% { transform: translateX(34px); opacity: 0; }
+    }
+
+    @keyframes phone-flash {
+      0%, 48%, 100% { opacity: 0; transform: scale(.8); }
+      58%, 66% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 20px var(--cream), inset 0 0 0 2px var(--cream); }
+      72% { opacity: .45; transform: scale(1); }
+    }
+
+    @keyframes tray-toast {
+      0%, 68% { opacity: 0; transform: translateX(0); }
+      79%, 94% { opacity: 1; transform: translateX(30px); }
+      100% { opacity: 0; transform: translateX(30px); }
+    }
+
+    @keyframes heart-pop {
+      0%, 18%, 100% { opacity: 0; transform: translateY(10px) scale(.4) rotate(45deg); }
+      28%, 44% { opacity: 1; transform: translateY(-4px) scale(1) rotate(45deg); }
+      54% { opacity: 0; transform: translateY(-16px) scale(.8) rotate(45deg); }
+    }
+
+    @keyframes disco-spin {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(1turn); }
+    }
+
+    @keyframes flag-wave {
+      0%, 100% { transform: rotate(-4deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    @keyframes glass-left {
+      0%, 100% { transform: rotate(0deg) translateX(0); }
+      50% { transform: rotate(-8deg) translateX(8px); }
+    }
+
+    @keyframes glass-right {
+      0%, 100% { transform: rotate(0deg) translateX(0); }
+      50% { transform: rotate(8deg) translateX(-8px); }
+    }
+
+    @media (min-width: 700px) {
+      section {
+        padding: 64px 22px;
+      }
+
+      .section-inner {
+        width: min(100%, 680px);
+      }
+
+      .tile-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .tile-grid::before {
+        left: 12%;
+        right: 12%;
+        top: 50%;
+        bottom: auto;
+        width: auto;
+        height: 24px;
+        background: linear-gradient(90deg, transparent, rgba(85, 223, 197, .2), rgba(255, 209, 57, .14), rgba(244, 93, 66, .12), transparent);
+      }
+
+      .tile {
+        grid-template-columns: 1fr;
+        text-align: center;
+        width: 100%;
+        margin: 0;
+      }
+
+      .tile svg {
+        margin: 0 auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="confetti-field" aria-hidden="true">
+    <span class="confetti c1"></span>
+    <span class="confetti c2"></span>
+    <span class="confetti c3"></span>
+    <span class="confetti c4"></span>
+    <span class="confetti c5"></span>
+    <span class="confetti c6"></span>
+    <span class="confetti c7"></span>
+    <span class="confetti c8"></span>
+  </div>
+  <div class="party-trail" aria-hidden="true">
+    <span class="trail-item trail-taco" style="--x:8%; --y:108%; --trail-size:44px; --drift-x:.22px; --drift-y:-1.22px; --spin:.42turn;"></span>
+    <span class="trail-item trail-lime" style="--x:78%; --y:122%; --trail-size:38px; --drift-x:-.18px; --drift-y:-1.05px; --spin:-.34turn;"></span>
+    <span class="trail-item trail-shot" style="--x:18%; --y:154%; --trail-size:40px; --drift-x:.28px; --drift-y:-1.35px; --spin:.18turn;"></span>
+    <span class="trail-item trail-bottle" style="--x:84%; --y:182%; --trail-size:46px; --drift-x:-.24px; --drift-y:-1.18px; --spin:-.2turn;"></span>
+    <span class="trail-item trail-taco" style="--x:64%; --y:232%; --trail-size:40px; --drift-x:.14px; --drift-y:-1.08px; --spin:.28turn;"></span>
+    <span class="trail-item trail-lime" style="--x:9%; --y:252%; --trail-size:36px; --drift-x:.2px; --drift-y:-1.26px; --spin:-.42turn;"></span>
+  </div>
+
+  <main class="page">
+    <section class="hero" aria-labelledby="invite-title">
+      <div class="sunburst" aria-hidden="true"></div>
+      <div class="section-inner hero-inner">
+        <svg class="party-art reveal visible" viewBox="0 0 456 255" role="img" aria-label="Tequila bottle, taco, and colorful confetti">
+          <g class="bottle">
+            <rect x="158" y="24" width="37" height="100" rx="7" fill="#f8aa35"/>
+            <rect x="147" y="39" width="59" height="15" fill="#ffd139"/>
+            <rect x="158" y="54" width="38" height="8" fill="#55dfc5"/>
+            <path d="M97 223h160V130c0-39-35-70-80-70s-80 31-80 70v93z" fill="#f8aa35"/>
+            <rect x="132" y="108" width="90" height="99" rx="15" fill="#fff7dc"/>
+            <path d="M141 119h72" stroke="#ffd139" stroke-width="4" stroke-linecap="round"/>
+            <rect x="154" y="77" width="43" height="17" rx="8.5" fill="#fff7dc"/>
+            <path d="M174 147v47m17-36v18m-32-2h52" stroke="#062955" stroke-width="13" stroke-linecap="round"/>
+            <path d="M95 224h178" stroke="#55dfc5" stroke-width="10" stroke-linecap="round"/>
+          </g>
+          <g class="taco">
+            <path d="M222 224c0-67 49-111 111-111s111 44 111 111H222z" fill="#ffd139"/>
+            <path d="M226 220c6-62 51-103 107-103s101 41 107 103" fill="none" stroke="#f45d42" stroke-width="9"/>
+            <path d="M240 170c10-22 26-39 47-49 14-6 33-11 49-10 37 1 73 19 91 58" fill="none" stroke="#55dfc5" stroke-width="19" stroke-linecap="round" stroke-dasharray="1 19"/>
+            <path class="sprinkle" d="M274 152l-4 11" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M326 156l8 10" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M367 145l4 10" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M304 186l9 8" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M352 199l5 11" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M263 196l-5 10" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            <path class="sprinkle" d="M392 184l9 7" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <g aria-hidden="true">
+            <path d="M25 62l-16 21 26-1z" fill="#55dfc5"/>
+            <path d="M57 86l26-8-9 25z" fill="#ffd139"/>
+            <path d="M91 38l22-9-7 25z" fill="#f45d42"/>
+            <path d="M249 80l24-6-8 22z" fill="#ffd139"/>
+            <path d="M287 63l21-9 7 24z" fill="#55dfc5"/>
+            <path d="M384 71l25-1-13-22z" fill="#ffd139"/>
+            <path d="M404 123l27-7-9 25z" fill="#55dfc5"/>
+          </g>
+        </svg>
+
+        <p class="eyebrow reveal visible">Join us for tacos & tequila in honor of</p>
+        <h1 id="invite-title" class="reveal visible">
+          <span>Pato & Trini's</span>
+          <span>Birthday</span>
+        </h1>
+        <p class="hero-detail reveal visible">June 20, 2026 Saturday at 7PM<br>8618 W Columbus Ave<br>Phoenix, AZ 85037</p>
+        <div class="scroll-mark" aria-hidden="true"></div>
+        <p class="scroll-label">Scroll</p>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="fiesta-title">
+      <div class="section-inner">
+        <h2 id="fiesta-title" class="headline reveal">Una fiesta para celebrar</h2>
+        <p class="subcopy reveal">Bring the love, the laughter, and a little room for birthday tacos.</p>
+
+        <div class="tile-grid">
+          <article class="tile reveal from-left">
+            <svg viewBox="0 0 90 90" aria-hidden="true">
+              <path d="M17 67c0-31 22-50 50-50 4 8 6 16 6 25 0 18-11 31-31 31-10 0-18-2-25-6z" fill="#ffd139"/>
+              <path d="M20 64c5-25 22-39 45-45" fill="none" stroke="#f45d42" stroke-width="7" stroke-linecap="round"/>
+              <path d="M29 37c8-5 16-8 25-9" stroke="#55dfc5" stroke-width="8" stroke-linecap="round" stroke-dasharray="1 12"/>
+              <path d="M38 44l5 6m13-13l-4 7m8 13l7 3" stroke="#fff7dc" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <h2>Tacos</h2>
+              <p>Warm plates, bright salsa, and birthday bites all night.</p>
+            </div>
+          </article>
+
+          <article class="tile reveal">
+            <svg viewBox="0 0 90 90" aria-hidden="true">
+              <path d="M37 10h17v25c11 4 19 14 19 27v15H18V62c0-13 8-23 19-27z" fill="#f8aa35"/>
+              <path d="M31 45h30v24H31z" fill="#fff7dc"/>
+              <path d="M41 50v15m8-10v10" stroke="#062955" stroke-width="6" stroke-linecap="round"/>
+              <path d="M27 78h38" stroke="#55dfc5" stroke-width="7" stroke-linecap="round"/>
+              <path d="M34 19h24" stroke="#ffd139" stroke-width="7" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <h2>Tequila</h2>
+              <p>A birthday toast for Pato, Trini, and the whole familia.</p>
+            </div>
+          </article>
+
+          <article class="tile reveal from-right">
+            <svg viewBox="0 0 90 90" aria-hidden="true">
+              <path d="M45 78c-18-12-31-24-31-40 0-10 8-18 18-18 6 0 11 3 13 8 3-5 8-8 14-8 10 0 17 8 17 18 0 16-13 28-31 40z" fill="#55dfc5"/>
+              <path d="M22 38c0-6 5-11 11-11" stroke="#fff7dc" stroke-width="5" stroke-linecap="round"/>
+              <path d="M19 16l-7-11m58 11l9-10m-2 54l11 5M13 63L2 70" stroke="#ffd139" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <h2>Familia</h2>
+              <p>Come ready to make birthday memories.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="fiesta-strip" aria-hidden="true">
+          <span class="flag" style="--color:#55dfc5"></span>
+          <span class="flag" style="--color:#ffd139"></span>
+          <span class="flag" style="--color:#f45d42"></span>
+          <span class="flag" style="--color:#55dfc5"></span>
+          <span class="flag" style="--color:#ffd139"></span>
+          <span class="flag" style="--color:#f45d42"></span>
+          <span class="flag" style="--color:#55dfc5"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="finale" aria-labelledby="finale-title">
+      <div class="section-inner">
+        <div class="toast-wrap reveal">
+          <div class="toast-burst" id="toastBurst" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <svg class="toast" id="toastTrigger" tabindex="0" viewBox="0 0 330 220" role="button" aria-label="Toast Pato and Trini">
+            <g class="left">
+              <path d="M105 46h54l-10 92h-34z" fill="#fff7dc" opacity=".95"/>
+              <path d="M112 84h40l-5 49h-30z" fill="#ffd139"/>
+              <path d="M120 138h24v43h-24zM105 181h54" stroke="#55dfc5" stroke-width="11" stroke-linecap="round"/>
+              <path d="M112 45h40" stroke="#fff7dc" stroke-width="10" stroke-linecap="round"/>
+            </g>
+            <g class="right">
+              <path d="M171 46h54l-10 92h-34z" fill="#fff7dc" opacity=".95"/>
+              <path d="M178 84h40l-5 49h-30z" fill="#ffd139"/>
+              <path d="M186 138h24v43h-24zM171 181h54" stroke="#55dfc5" stroke-width="11" stroke-linecap="round"/>
+              <path d="M178 45h40" stroke="#fff7dc" stroke-width="10" stroke-linecap="round"/>
+            </g>
+            <path d="M93 41l-21-19m171 18l21-19M162 27V4m-52 20L96 4m123 20l14-20" stroke="#ffd139" stroke-width="8" stroke-linecap="round"/>
+            <path d="M65 118l-21 8m238-8l21 8M82 165l-17 18m183-18l17 18" stroke="#f45d42" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <h2 id="finale-title" class="closing reveal">Salud!</h2>
+        <p class="subcopy reveal">We can't wait to celebrate Pato & Trini with everyone we love.</p>
+      </div>
+    </section>
+  </main>
+
+  <aside class="music-dock" aria-label="Background music">
+    <div class="music-title">
+      <strong>Las Mañanitas</strong>
+      <span id="musicStatus">Birthday music</span>
+    </div>
+    <button class="music-button" type="button" id="musicButton" aria-label="Play Las Mañanitas">
+      <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg id="stopIcon" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+        <path d="M7 7h10v10H7z"></path>
+      </svg>
+    </button>
+  </aside>
+  <div id="musicFrame" class="music-frame" aria-hidden="true"></div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const trailItems = document.querySelectorAll('.trail-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '-6% 0px -10% 0px' });
+
+    reveals.forEach((item) => observer.observe(item));
+
+    function updateScrollTrail() {
+      trailItems.forEach((item) => {
+        const styles = getComputedStyle(item);
+        const driftX = parseFloat(styles.getPropertyValue('--drift-x')) || 0;
+        const driftY = parseFloat(styles.getPropertyValue('--drift-y')) || -1;
+        const spin = parseFloat(styles.getPropertyValue('--spin')) || 0;
+        item.style.setProperty('--float-x', `${window.scrollY * driftX}px`);
+        item.style.setProperty('--float-y', `${window.scrollY * driftY}px`);
+        item.style.setProperty('--float-spin', `${window.scrollY * spin}deg`);
+      });
+    }
+
+    updateScrollTrail();
+    window.addEventListener('scroll', updateScrollTrail, { passive: true });
+
+    const toastTrigger = document.getElementById('toastTrigger');
+    const toastBurst = document.getElementById('toastBurst');
+
+    function popToast() {
+      toastTrigger.classList.remove('toast-pop');
+      toastBurst.classList.remove('active');
+      void toastTrigger.offsetWidth;
+      toastTrigger.classList.add('toast-pop');
+      toastBurst.classList.add('active');
+      window.setTimeout(() => {
+        toastTrigger.classList.remove('toast-pop');
+        toastBurst.classList.remove('active');
+      }, 850);
+    }
+
+    toastTrigger.addEventListener('click', popToast);
+    toastTrigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        popToast();
+      }
+    });
+
+    const musicButton = document.getElementById('musicButton');
+    const musicFrame = document.getElementById('musicFrame');
+    const musicStatus = document.getElementById('musicStatus');
+    const playIcon = document.getElementById('playIcon');
+    const stopIcon = document.getElementById('stopIcon');
+    let musicPlaying = false;
+
+    function playMusic() {
+      musicFrame.innerHTML = '<iframe title="Las Mananitas" width="1" height="1" src="https://www.youtube.com/embed/cDT12zAWDuM?autoplay=1&loop=1&playlist=cDT12zAWDuM&controls=0&playsinline=1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      musicStatus.textContent = 'Now playing';
+      musicButton.setAttribute('aria-label', 'Stop Las Mañanitas');
+      playIcon.style.display = 'none';
+      stopIcon.style.display = '';
+      musicPlaying = true;
+    }
+
+    function stopMusic() {
+      musicFrame.innerHTML = '';
+      musicStatus.textContent = 'Birthday music';
+      musicButton.setAttribute('aria-label', 'Play Las Mañanitas');
+      playIcon.style.display = '';
+      stopIcon.style.display = 'none';
+      musicPlaying = false;
+    }
+
+    window.addEventListener('load', playMusic);
+
+    musicButton.addEventListener('click', () => {
+      if (musicPlaying) {
+        stopMusic();
+        return;
+      }
+
+      playMusic();
+    });
+  </script>
+</body>
+</html>
